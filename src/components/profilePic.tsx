@@ -1,8 +1,7 @@
 import '../App.css';
+import { picProps } from '../Types';
 
-type picProps = {
-    pictureURL: string;
-  }
+
 
 function ProfilePic({pictureURL}: picProps) {
 
@@ -10,7 +9,7 @@ function ProfilePic({pictureURL}: picProps) {
         <img 
             className="w-32 rounded-lg shadow-lg m-2.5"
             src={pictureURL}
-            alt="new"
+            alt='public/images/blank_profile.webp'
       />
     );
 }

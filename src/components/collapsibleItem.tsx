@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../App.css';
 import ProfileDetails from './profileDetails';
-import { GitHubGetUser } from './widget';
-
-type CollapsibleItemProps = {
-    title: string;
-    classNames?: string;
-    users: GitHubGetUser[];
-    setGitUser: (value: string) => void;
-    newSearch: boolean;
-  }
+import { CollapsibleItemProps } from '../Types';
 
 function CollapsibleItem({ title, classNames, users, setGitUser, newSearch }: CollapsibleItemProps) {
 
@@ -34,12 +26,16 @@ function CollapsibleItem({ title, classNames, users, setGitUser, newSearch }: Co
             <div className="border">
                 {open && 
                     <div className="p-3">
-                        {users.map((user, key) => {
-                            return (
-                                <ProfileDetails key={key} name={user.name} login={user.login} created_at={user.created_at} updated_at={user.updated_at} pictureURL={user.avatar_url} setGitUser={setGitUser} />
-                            )
-                        })
-
+                        {users.length > 0 ? 
+                            users.map((user, key) => {
+                                return (
+                                    <ProfileDetails key={key} gitUserDetails={user} setGitUser={setGitUser} />
+                                )
+                            })
+                        :
+                            <div className='flex flex-wrap'>
+                                There are no users to display.
+                            </div>
                         }
                     </div>
                 }
